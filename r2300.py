@@ -9,8 +9,8 @@ network = read_ip()
 root = Tk()
 root.title ("R2300")
 root.geometry ("500x500")
-icon = PhotoImage(file="paf.png")
-sensor_image = ImageTk.PhotoImage(file="r2300.png")
+icon = PhotoImage(file="img/paf.png")
+sensor_image = ImageTk.PhotoImage(file="img/r2300.png")
 root.iconphoto(True,icon)
 
 # create Network Setup Frame
