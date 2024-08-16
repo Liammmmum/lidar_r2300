@@ -114,15 +114,7 @@ def socket_connect(pc_ip_address, status):
                 # print(len(distance_array))
                 print('amplitude:' + str(amplitude_array))
                 # print(len(amplitude_array))
-                # if (min(distance_array) < 500):
-                #     print ('obstacal detected')
-                #     print('min. distance:' + str(min(distance_array)))
-                # mean_left = np.mean(distance_array[0:50])
-                # mean_right = np.mean(distance_array[51:100])
-                # if mean_left < mean_right:
-                #     print ('TURN LEFT')
-                # elif mean_left > mean_right:
-                #     print ('TURN RIGHT')
+
     except:           
             s.close()
             print ('socket closed')
