@@ -49,6 +49,22 @@ def read_handle():
     file.close()
     return (content)
 
+def twos_complement_to_decimal(binary_str):
+    n = len(binary_str)
+    
+    # Check if the number is negative
+    if binary_str[0] == '1':
+        # Invert all bits
+        inverted_bits = ''.join('1' if bit == '0' else '0' for bit in binary_str)
+        # Convert inverted binary to decimal and add 1
+        decimal = int(inverted_bits, 2) + 1
+        # Make it negative
+        decimal = -decimal
+    else:
+        # Convert directly to decimal
+        decimal = int(binary_str, 2)
+
+    return decimal
 
 import socket
 
@@ -72,7 +88,7 @@ def socket_connect(pc_ip_address, status):
                 scan_number = indata[11]*256+indata[10]
                 packet_number = indata[13] * 256 + indata[12]
                 layer_index = indata[15] * 256 + indata[14]
-                layer_inclination = ((indata[19]*(256**3)+indata[18]*(256**2)+indata[17]*256+indata[16])/10000)
+                layer_inclination = (twos_complement_to_decimal(bin(indata[19]*(256**3)+indata[18]*(256**2)+indata[17]*256+indata[16])[2:].zfill(32))/10000)
                 timestamp_raw = (indata[27]*(256**7)+indata[26]*(256**6)+indata[25]*(256**5)+indata[24]*(256**4)+indata[23]*(256**3)+indata[22]*(256**2)+indata[21]*256+indata[20])
                 status_flags = indata[39]*(256**3)+indata[38]*(256**2)+indata[37]*256+indata[36]
                 scan_frequency =  (indata[43] * (256**3)+indata[42] * (256**2)+ indata[41] * (256) + indata[40])/1000
