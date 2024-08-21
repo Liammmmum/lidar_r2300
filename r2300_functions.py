@@ -95,7 +95,7 @@ def socket_connect(pc_ip_address, status):
                 num_points_scan = indata[45] * 256 + indata[44]
                 num_points_packet = indata[47] * 256 + indata[46]
                 first_index = indata[49] * 256 + indata[48]
-                first_angle = ((indata[53]*(256**3)+indata[52]*(256**2)+indata[51]*256+indata[50])/10000)
+                first_angle = (twos_complement_to_decimal(bin(indata[53]*(256**3)+indata[52]*(256**2)+indata[51]*256+indata[50])[2:].zfill(32))/10000)
                 angular_increment = ((indata[57]*(256**3)+indata[56]*(256**2)+indata[55]*256+indata[54])/10000)
                 header_padding = indata[83] * 256 + indata[82]
                 scan_point_data_bin = []
